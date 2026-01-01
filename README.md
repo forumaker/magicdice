@@ -11,6 +11,9 @@ MagicDice adds animated dice rolls with multiple visual styles and smooth roll a
 
 
 ## 📸 Screenshots
+<img width="2460" height="440" alt="Dice_1" src="https://github.com/user-attachments/assets/05be7339-4d58-4605-8d42-76f2bb74d8c6" />
+<img width="2460" height="620" alt="Dice_2" src="https://github.com/user-attachments/assets/21ff3aa1-2d4a-4368-ad9b-44f3efcee5d0" />
+<img width="2460" height="240" alt="Dice_3" src="https://github.com/user-attachments/assets/dc26ab17-f900-4d95-9f0c-f6e7b6829bc9" />
 
 
 ## 📦 Installation
