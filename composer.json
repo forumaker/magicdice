@@ -1,0 +1,46 @@
+{
+  "name": "forumaker/magicdice",
+  "description": "MagicDice adds animated dice rolls with unique skins",
+  "type": "flarum-extension",
+  "keywords": ["flarum", "flarum-extension", "dice", "random", "magic"],
+  "license": "MIT",
+  "homepage": "https://github.com/forumaker/magicdice",
+  "support": {
+    "issues": "https://github.com/forumaker/magicdice/issues",
+    "source": "https://github.com/forumaker/magicdice",
+    "forum": "https://discuss.flarum.org/d/38444-magicdice-animated-dice-rolls"
+  },
+  "authors": [
+    {
+      "name": "forumaker",
+      "role": "Developer",
+      "homepage": "https://github.com/forumaker"
+    }
+  ],
+  "require": {
+    "php": ">=8.2",
+    "flarum/core": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "forumaker\\MagicDice\\": "src/"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-2.x": "2.x-dev"
+    },
+    "flarum-extension": {
+      "title": "Magic Dice",
+      "category": "feature",
+      "icon": {
+        "name": "fas fa-dice-d20",
+        "backgroundColor": "#6A5ACD",
+        "color": "#ffffff"
+      }
+    }
+  },
+  "config": {
+    "sort-packages": true
+  }
+}
