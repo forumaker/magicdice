@@ -23,6 +23,10 @@ composer require forumaker/magicdice:"*"
 ```
 
 
+## ❗Important
+The extension previously released under the name `capybash` is no longer supported.
+
+
 ## 🔗 Links
 - [GitHub Repository](https://github.com/forumaker/magicdice)
 - [Packagist](https://packagist.org/packages/forumaker/magicdice)
