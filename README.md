@@ -1,6 +1,7 @@
 # 🎲 MagicDice for Flarum
-MagicDice adds animated dice rolls with multiple visual styles and smooth roll animations. **Supports Flarum 2.x only**
+Adds animated dice rolls with multiple visual styles and smooth roll animations. **Supports Flarum 2.x only**
 
+![License](https://img.shields.io/badge/license-MIT-blue) ![Packagist Version](https://img.shields.io/packagist/v/forumaker/magicdice) ![Downloads](https://img.shields.io/packagist/dt/forumaker/magicdice)
 
 ## 🚀 Features
 - 🎰 Animated d6 / d20 rolls rendered right in posts  
@@ -12,7 +13,13 @@ MagicDice adds animated dice rolls with multiple visual styles and smooth roll a
 
 ## 📸 Screenshots
 <img width="2460" height="440" alt="Dice_1" src="https://github.com/user-attachments/assets/05be7339-4d58-4605-8d42-76f2bb74d8c6" />
+
+___
+
 <img width="2460" height="620" alt="Dice_2" src="https://github.com/user-attachments/assets/21ff3aa1-2d4a-4368-ad9b-44f3efcee5d0" />
+
+___
+
 <img width="2460" height="240" alt="Dice_3" src="https://github.com/user-attachments/assets/dc26ab17-f900-4d95-9f0c-f6e7b6829bc9" />
 
 
@@ -30,7 +37,6 @@ The extension previously released under the name `capybash` is no longer support
 ## 🔗 Links
 - [GitHub Repository](https://github.com/forumaker/magicdice)
 - [Packagist](https://packagist.org/packages/forumaker/magicdice)
-- [Extiverse](https://extiverse.com/extension/forumaker/magicdice)
 - [Discuss](https://discuss.flarum.org/d/38444-magicdice-animated-dice-rolls)
 
 
