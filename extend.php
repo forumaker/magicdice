@@ -6,8 +6,7 @@ use Flarum\Api\Resource;
 use Flarum\Api\Schema;
 use Flarum\Extend;
 use Flarum\Post\Event\Saving;
-use Flarum\Settings\SettingsRepositoryInterface;
-use Illuminate\Support\Arr;
+use forumaker\MagicDice\Listener\DiceSaving;
 
 return [
     (new Extend\Frontend('admin'))
@@ -24,49 +23,7 @@ return [
         ->registerPreference('rollDieSkin', null, 'classic'),
 
     (new Extend\Event())
-        ->listen(Saving::class, function (Saving $event) {
-            $attributes = Arr::get($event->data, 'attributes', []);
-
-            if (!Arr::exists($attributes, 'content')) {
-                return;
-            }
-
-            /** @var SettingsRepositoryInterface $settings */
-            $settings = resolve(SettingsRepositoryInterface::class);
-
-            $rolls = [];
-
-            if ($event->post->dice_rolls && !$settings->get('magic-dice.clearOnEdit')) {
-                $existing = array_filter(explode(',', $event->post->dice_rolls), 'strlen');
-                $rolls = array_values($existing);
-            }
-
-            $content = Arr::get($attributes, 'content') ?? '';
-
-            preg_match_all(
-                '~(?:^|[\n\r])(>\s*)?(\d+)d(\d+)(?=[\n\r]|$)~',
-                $content,
-                $matches,
-                PREG_SET_ORDER
-            );
-
-            $numberOfRolls = count($matches);
-
-            for ($i = count($rolls); $i < $numberOfRolls; $i++) {
-                $match = $matches[$i];
-
-                $count = (int) $match[2];
-                $sides = (int) $match[3];
-
-                if ($sides < 2) {
-                    $sides = 6;
-                }
-
-                $rolls[] = (string) random_int(1, $sides);
-            }
-
-            $event->post->dice_rolls = implode(',', $rolls);
-        }),
+        ->listen(Saving::class, DiceSaving::class),
 
     (new Extend\ApiResource(Resource\PostResource::class))
         ->fields(fn () => [

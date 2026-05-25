@@ -109,8 +109,6 @@ app.initializers.add('magic-dice', () => {
 
       if (!isNaN(number)) {
         span.dataset.number = String(number);
-
-        // removed tooltip
         span.dataset.useEmoji = !isD20 && useEmojiD6 ? '1' : '0';
 
         if (!isD20 && number >= 1 && number <= 6) {
@@ -131,24 +129,6 @@ app.initializers.add('magic-dice', () => {
   extend(CommentPost.prototype, 'oncreate', function (this: CommentPost) {
     const root = this.element;
     if (!root) return;
-
-    // removed Tooltip wrapper — now direct span
-    root.querySelectorAll<HTMLElement>('.roll-a-die').forEach((el) => {
-      const vnode = m(
-        'span',
-        {
-          class: el.className,
-          'data-sides': el.dataset.sides,
-          'data-number': el.dataset.number,
-          'data-useEmoji': el.dataset.useEmoji,
-        },
-        el.textContent || ''
-      );
-
-      const mountPoint = document.createElement('span');
-      el.replaceWith(mountPoint);
-      m.mount(mountPoint, { view: () => vnode });
-    });
 
     root.querySelectorAll<HTMLElement>('.roll-a-die--will-animate').forEach((el) => {
       el.classList.remove('roll-a-die--will-animate');

@@ -1,6 +1,6 @@
 {
   "name": "forumaker/magicdice",
-  "description": "MagicDice adds animated dice rolls with unique skins",
+  "description": "Adds animated dice rolls with unique skins",
   "type": "flarum-extension",
   "keywords": ["flarum", "flarum-extension", "dice", "random", "magic"],
   "license": "MIT",
@@ -18,7 +18,7 @@
     }
   ],
   "require": {
-    "php": ">=8.2",
+    "php": "^8.2",
     "flarum/core": "^2.0"
   },
   "autoload": {

@@ -103,7 +103,6 @@ export default class DicePickerPopover extends Component<DicePickerAttrs> {
           position: 'fixed',
           left: `${r.left}px`,
           top: `${r.top}px`,
-          // ⇩⇩⇩ вот тут была ошибка — строка теперь закрывается одинарной кавычкой
           transform: 'translate(-100%, calc(-100% - 8px))',
         };
       } else {
