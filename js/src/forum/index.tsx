@@ -8,7 +8,7 @@ import FieldSet from 'flarum/common/components/FieldSet';
 import Stream from 'flarum/common/utils/Stream';
 
 import DicePickerPopover, { DicePickerAttrs } from './components/DicePickerPopover';
-import DiceSkinPicker, { DiceSkinId } from './components/DiceSkinPicker';
+import DiceSkinPicker, { DiceSkinId, DICE_SKIN_IDS } from './components/DiceSkinPicker';
 
 const EMOJI_BY_NUMBER = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
 const ONLY_ONE_DICE_REGEX = /^[\n\r]*\d+d\d+[\n\r]*$/i;
@@ -16,8 +16,9 @@ const ONLY_ONE_DICE_REGEX = /^[\n\r]*\d+d\d+[\n\r]*$/i;
 function currentDiceSkin(): DiceSkinId {
   const user = app.session?.user;
   const prefs = (user && user.preferences && user.preferences()) || {};
-  const skin = (prefs.rollDieSkin as DiceSkinId) || 'classic';
-  return skin;
+  const skin = prefs.rollDieSkin as DiceSkinId | undefined;
+
+  return skin && DICE_SKIN_IDS.includes(skin) ? skin : 'classic';
 }
 
 function startRollAnimation(el: HTMLElement) {
@@ -209,8 +210,7 @@ app.initializers.add('magic-dice', () => {
 app.initializers.add('magic-dice-preferences', () => {
   extend('flarum/forum/components/SettingsPage', 'oninit', function () {
     const user = this.user;
-    const prefs = (user && user.preferences && user.preferences()) || {};
-    this.diceSkin = Stream((prefs.rollDieSkin as DiceSkinId) || 'classic');
+    this.diceSkin = Stream(currentDiceSkin());
 
     this.diceSkinItems = () => {
       const items = new ItemList();

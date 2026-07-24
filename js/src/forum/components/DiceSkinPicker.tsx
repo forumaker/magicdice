@@ -48,6 +48,8 @@ const SKINS: SkinDef[] = [
   },
 ];
 
+export const DICE_SKIN_IDS: DiceSkinId[] = SKINS.map((skin) => skin.id);
+
 export default class DiceSkinPicker extends Component<DiceSkinPickerAttrs> {
   view() {
     const current = this.attrs.value;

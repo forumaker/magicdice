@@ -8,6 +8,8 @@ use Illuminate\Support\Arr;
 
 class DiceSaving
 {
+    private const MAX_ROLLS = 60;
+
     public function __construct(
         private readonly SettingsRepositoryInterface $settings
     ) {}
@@ -24,7 +26,7 @@ class DiceSaving
 
         if ($event->post->dice_rolls && !$this->settings->get('magic-dice.clearOnEdit')) {
             $existing = array_filter(explode(',', $event->post->dice_rolls), 'strlen');
-            $rolls = array_values($existing);
+            $rolls = array_slice(array_values($existing), 0, self::MAX_ROLLS);
         }
 
         $content = Arr::get($attributes, 'content') ?? '';
@@ -36,7 +38,7 @@ class DiceSaving
             PREG_SET_ORDER
         );
 
-        $numberOfRolls = count($matches);
+        $numberOfRolls = min(count($matches), self::MAX_ROLLS);
 
         for ($i = count($rolls); $i < $numberOfRolls; $i++) {
             $match = $matches[$i];

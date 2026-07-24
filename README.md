@@ -1,7 +1,7 @@
 # 🎲 MagicDice for Flarum
 Adds animated dice rolls with multiple visual styles and smooth roll animations. **Supports Flarum 2.x only**
 
-![License](https://img.shields.io/badge/license-MIT-blue) ![Packagist Version](https://img.shields.io/packagist/v/forumaker/magicdice) ![Downloads](https://img.shields.io/packagist/dt/forumaker/magicdice)
+![License](https://img.shields.io/badge/license-MIT-blue) ![Packagist Version](https://img.shields.io/packagist/v/forumaker/magicdice) ![Downloads](https://img.shields.io/packagist/dt/forumaker/magicdice) ![Review](https://floxum.com/extension/forumaker/magicdice/badge/review-score)
 
 ## 🚀 Features
 - 🎰 Animated d6 / d20 rolls rendered right in posts  
