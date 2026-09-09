@@ -16,7 +16,7 @@ Adds animated dice rolls with multiple visual styles and smooth roll animations.
 
 ___
 
-<img width="2460" height="620" alt="Dice_2" src="https://github.com/user-attachments/assets/21ff3aa1-2d4a-4368-ad9b-44f3efcee5d0" />
+<img width="2530" height="640" alt="image" src="https://github.com/user-attachments/assets/66334cf3-4041-499b-bbdc-ce8ee1fbdc05" />
 
 ___
 
