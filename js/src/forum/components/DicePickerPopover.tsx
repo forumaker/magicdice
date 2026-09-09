@@ -1,6 +1,7 @@
+import app from 'flarum/forum/app';
 import Component from 'flarum/common/Component';
 
-type DiceVariant = '1d6' | '1d20' | '2d6' | '2d20';
+type DiceVariant = '1d6' | '1d20' | '1d10' | '2d6' | '2d20' | '2d10';
 
 export interface DicePickerAttrs {
   label: string;
@@ -115,11 +116,21 @@ export default class DicePickerPopover extends Component<DicePickerAttrs> {
       }
     }
 
-    const variants: { key: DiceVariant; label: string; fa: string }[] = [
-      { key: '1d6',  label: '1d6',  fa: 'fas fa-dice' },
-      { key: '1d20', label: '1d20', fa: 'fas fa-dice-d20' },
-      { key: '2d6',  label: '2d6',  fa: 'fas fa-dice' },
-      { key: '2d20', label: '2d20', fa: 'fas fa-dice-d20' },
+    const iconD6 = (app.forum.attribute<string>('magicDiceIconD6') || 'fas fa-dice-d6').trim();
+    const iconD10 = (app.forum.attribute<string>('magicDiceIconD10') || 'fas fa-gem').trim();
+    const iconD20 = (app.forum.attribute<string>('magicDiceIconD20') || 'fas fa-dice-d20').trim();
+
+    const colorD6 = (app.forum.attribute<string>('magicDiceColorD6') || '#80b77e').trim();
+    const colorD10 = (app.forum.attribute<string>('magicDiceColorD10') || '#a7253d').trim();
+    const colorD20 = (app.forum.attribute<string>('magicDiceColorD20') || '#3f6f8d').trim();
+
+    const variants: { key: DiceVariant; label: string; fa: string; color: string; type: 'd6' | 'd10' | 'd20' }[] = [
+      { key: '1d6',  label: '1d6',  fa: iconD6,  color: colorD6,  type: 'd6' },
+      { key: '2d6',  label: '2d6',  fa: iconD6,  color: colorD6,  type: 'd6' },
+      { key: '1d10', label: '1d10', fa: iconD10, color: colorD10, type: 'd10' },
+      { key: '2d10', label: '2d10', fa: iconD10, color: colorD10, type: 'd10' },
+      { key: '1d20', label: '1d20', fa: iconD20, color: colorD20, type: 'd20' },
+      { key: '2d20', label: '2d20', fa: iconD20, color: colorD20, type: 'd20' },
     ];
 
     return m.fragment({ key: 'magic-dice-picker' }, [
@@ -147,7 +158,8 @@ export default class DicePickerPopover extends Component<DicePickerAttrs> {
                 },
                 [
                   m(
-                    'div.MagicDice-PickerDie',
+                    `div.MagicDice-PickerDie.MagicDice-PickerDie--${v.type}`,
+                    { style: { color: v.color } },
                     m('i', { className: `icon ${v.fa}`, 'aria-hidden': 'true' })
                   ),
                   m('div.MagicDice-PickerLabel', v.label),

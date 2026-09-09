@@ -3,6 +3,13 @@ forumaker-magic-dice:
     settings:
       section_main: Settings
       clearOnEdit: Generate new numbers on post edit
+      icons:
+        color: Color
+        icon: Icon class
+        preview: Preview
+        d6: d6
+        d10: d10
+        d20: d20
 
   forum:
     tooltip:

@@ -106,3 +106,112 @@
   outline: none;
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-color, #6d28d9) 10%, transparent);
 }
+
+.MagicDice-IconGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.MagicDice-IconGrid-row {
+  display: grid;
+  grid-template-columns: 48px 190px 1fr 44px;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.MagicDice-IconGrid-row--header {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted-color, #6b7280);
+  text-transform: uppercase;
+}
+
+.MagicDice-IconGrid-row label {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.MagicDice-ColorPicker {
+  display: flex;
+  gap: 6px;
+  align-items: stretch;
+}
+
+// Removing the outer input's border isn't enough — Chrome/Edge render an
+// inner ::-webkit-color-swatch with its own default gray border and square
+// corners, and Firefox has an equivalent ::-moz-color-swatch. Both need
+// their own overrides to actually get a borderless, rounded swatch.
+.MagicDice-ColorPicker-swatch {
+  display: block;
+  width: 40px;
+  min-width: 40px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: none;
+  box-sizing: border-box;
+  align-self: stretch;
+  -webkit-appearance: none;
+  appearance: none;
+
+  &::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+
+  &::-webkit-color-swatch {
+    border: none;
+    border-radius: 8px;
+  }
+
+  &::-moz-color-swatch {
+    border: none;
+    border-radius: 8px;
+  }
+}
+
+.MagicDice-IconPreview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--control-bg, #e5e7eb);
+  border-radius: 8px;
+  background: var(--body-bg, #fff);
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .MagicDice-IconGrid-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .MagicDice-IconGrid-row--header {
+    display: none;
+  }
+
+  .MagicDice-IconGrid-row label {
+    flex: 0 0 100%;
+  }
+
+  .MagicDice-IconGrid-row .MagicDice-ColorPicker {
+    flex: 1 1 auto;
+  }
+
+  .MagicDice-IconGrid-row .MagicDice-IconGrid-iconInput {
+    flex: 1 1 160px;
+  }
+
+  .MagicDice-IconGrid-row .MagicDice-IconPreview {
+    flex: 0 0 44px;
+    height: 40px;
+  }
+}

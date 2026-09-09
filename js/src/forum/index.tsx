@@ -10,6 +10,12 @@ import Stream from 'flarum/common/utils/Stream';
 import DicePickerPopover, { DicePickerAttrs } from './components/DicePickerPopover';
 import DiceSkinPicker, { DiceSkinId, DICE_SKIN_IDS } from './components/DiceSkinPicker';
 
+declare const s9e: {
+  TextFormatter: {
+    preview: (text: string, element: HTMLElement) => void;
+  };
+};
+
 const EMOJI_BY_NUMBER = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
 const ONLY_ONE_DICE_REGEX = /^[\n\r]*\d+d\d+[\n\r]*$/i;
 
@@ -194,11 +200,17 @@ app.initializers.add('magic-dice', () => {
         case '1d20':
           editor.insertAtCursor('1d20\n');
           break;
+        case '1d10':
+          editor.insertAtCursor('1d10\n');
+          break;
         case '2d6':
           editor.insertAtCursor('1d6\n1d6\n');
           break;
         case '2d20':
           editor.insertAtCursor('1d20\n1d20\n');
+          break;
+        case '2d10':
+          editor.insertAtCursor('1d10\n1d10\n');
           break;
       }
     };
