@@ -16,7 +16,7 @@ class DiceRollOnPostTest extends TestCase
     {
         parent::setUp();
 
-        $this->extension('forumaker-magic-dice');
+        $this->extension('forumaker-magicdice');
 
         $this->prepareDatabase([
             'users' => [
