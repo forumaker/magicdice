@@ -1,5 +1,6 @@
 import app from 'flarum/forum/app';
 import Component from 'flarum/common/Component';
+import type Mithril from 'mithril';
 
 type DiceVariant = '1d6' | '1d20' | '1d10' | '2d6' | '2d20' | '2d10';
 
@@ -10,14 +11,14 @@ export interface DicePickerAttrs {
 }
 
 export default class DicePickerPopover extends Component<DicePickerAttrs> {
-  open: boolean;
-  anchor: HTMLElement | null;
-  popoverEl: HTMLElement | null;
+  open!: boolean;
+  anchor!: HTMLElement | null;
+  popoverEl!: HTMLElement | null;
 
   private _onDocClick!: (e: MouseEvent) => void;
   private _onKey!: (e: KeyboardEvent) => void;
 
-  oninit(vnode: m.Vnode<DicePickerAttrs, this>) {
+  oninit(vnode: Mithril.Vnode<DicePickerAttrs, this>) {
     super.oninit(vnode);
     this.open = false;
     this.anchor = null;
@@ -70,7 +71,7 @@ export default class DicePickerPopover extends Component<DicePickerAttrs> {
     this.close();
   }
 
-  view(vnode: m.Vnode<DicePickerAttrs, this>) {
+  view(vnode: Mithril.Vnode<DicePickerAttrs, this>) {
     const { label, icon } = vnode.attrs;
 
     const trigger = m(
@@ -86,7 +87,7 @@ export default class DicePickerPopover extends Component<DicePickerAttrs> {
           this.toggle();
           (e.currentTarget as HTMLElement).blur();
         },
-        oncreate: (v: m.VnodeDOM) => {
+        oncreate: (v: Mithril.VnodeDOM) => {
           this.anchor = v.dom as HTMLElement;
         },
       },
@@ -125,8 +126,8 @@ export default class DicePickerPopover extends Component<DicePickerAttrs> {
     const colorD20 = (app.forum.attribute<string>('magicDiceColorD20') || '#3f6f8d').trim();
 
     const variants: { key: DiceVariant; label: string; fa: string; color: string; type: 'd6' | 'd10' | 'd20' }[] = [
-      { key: '1d6',  label: '1d6',  fa: iconD6,  color: colorD6,  type: 'd6' },
-      { key: '2d6',  label: '2d6',  fa: iconD6,  color: colorD6,  type: 'd6' },
+      { key: '1d6', label: '1d6', fa: iconD6, color: colorD6, type: 'd6' },
+      { key: '2d6', label: '2d6', fa: iconD6, color: colorD6, type: 'd6' },
       { key: '1d10', label: '1d10', fa: iconD10, color: colorD10, type: 'd10' },
       { key: '2d10', label: '2d10', fa: iconD10, color: colorD10, type: 'd10' },
       { key: '1d20', label: '1d20', fa: iconD20, color: colorD20, type: 'd20' },
@@ -140,7 +141,7 @@ export default class DicePickerPopover extends Component<DicePickerAttrs> {
           'div.MagicDice-PickerPopover',
           {
             style,
-            oncreate: (v: m.VnodeDOM) => (this.popoverEl = v.dom as HTMLElement),
+            oncreate: (v: Mithril.VnodeDOM) => (this.popoverEl = v.dom as HTMLElement),
             onremove: () => (this.popoverEl = null),
           },
           m(

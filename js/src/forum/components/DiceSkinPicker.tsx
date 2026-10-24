@@ -60,45 +60,36 @@ export default class DiceSkinPicker extends Component<DiceSkinPickerAttrs> {
         const active = current === skin.id;
         const label = app.translator.trans(skin.labelKey);
 
-        const d6Class =
-          'roll-a-die roll-a-die--d6 roll-a-die--skin-' +
-          skin.id +
-          ' DiceSkin-previewDie';
+        const d6Class = 'roll-a-die roll-a-die--d6 roll-a-die--skin-' + skin.id + ' DiceSkin-previewDie';
 
-        const d20Class =
-          'roll-a-die roll-a-die--d20 roll-a-die--skin-' +
-          skin.id +
-          ' DiceSkin-previewDie';
+        const d20Class = 'roll-a-die roll-a-die--d20 roll-a-die--skin-' + skin.id + ' DiceSkin-previewDie';
 
-        return m(
-          'label.DiceSkin' + (active ? '.DiceSkin--active' : ''),
-          [
-            m('input', {
-              type: 'radio',
-              name: 'rollDieSkin',
-              value: skin.id,
-              checked: active,
-              onchange: () => this.attrs.onChange(skin.id),
-            }),
-            m('div.DiceSkin-card', [
-              m('div.DiceSkin-preview', [
-                m('span', {
-                  className: d6Class,
-                  'data-number': String(skin.exampleD6),
-                }),
-                m(
-                  'span',
-                  {
-                    className: d20Class,
-                    'data-number': String(skin.exampleD20),
-                  },
-                  String(skin.exampleD20)
-                ),
-              ]),
-              m('div.DiceSkin-meta', [m('div.DiceSkin-title', label)]),
+        return m('label.DiceSkin' + (active ? '.DiceSkin--active' : ''), [
+          m('input', {
+            type: 'radio',
+            name: 'rollDieSkin',
+            value: skin.id,
+            checked: active,
+            onchange: () => this.attrs.onChange(skin.id),
+          }),
+          m('div.DiceSkin-card', [
+            m('div.DiceSkin-preview', [
+              m('span', {
+                className: d6Class,
+                'data-number': String(skin.exampleD6),
+              }),
+              m(
+                'span',
+                {
+                  className: d20Class,
+                  'data-number': String(skin.exampleD20),
+                },
+                String(skin.exampleD20)
+              ),
             ]),
-          ]
-        );
+            m('div.DiceSkin-meta', [m('div.DiceSkin-title', label)]),
+          ]),
+        ]);
       })
     );
   }

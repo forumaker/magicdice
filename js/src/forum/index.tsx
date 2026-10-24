@@ -82,8 +82,8 @@ function startRollAnimation(el: HTMLElement) {
 }
 
 app.initializers.add('magic-dice', () => {
-  override(Post.prototype, 'contentHtml', function (this: Post, original: () => string) {
-    const contentHtml = original();
+  override(Post.prototype, 'contentHtml', function (this: Post, original: () => string | null | undefined) {
+    const contentHtml = original() as string;
     const rollsAsString = this.attribute<string | undefined>('diceRolls');
 
     if (!rollsAsString) return contentHtml;
@@ -185,8 +185,8 @@ app.initializers.add('magic-dice', () => {
     });
   });
 
-  extend(TextEditor.prototype, 'toolbarItems', function (this: TextEditor, items: ItemList) {
-    const editor = this.attrs.composer && this.attrs.composer.editor;
+  extend(TextEditor.prototype, 'toolbarItems', function (this: TextEditor, items: ItemList<any>) {
+    const editor = (this.attrs as any).composer && (this.attrs as any).composer.editor;
     const label = app.translator.trans('forumaker-magic-dice.forum.composer.rollDie');
     const icon = 'fas fa-dice-d20';
 
@@ -244,7 +244,7 @@ app.initializers.add('magic-dice-preferences', () => {
     };
   });
 
-  extend('flarum/forum/components/SettingsPage', 'settingsItems', function (items: ItemList) {
+  extend('flarum/forum/components/SettingsPage', 'settingsItems', function (items: ItemList<any>) {
     if (!this.user) return;
 
     const diceItems = typeof this.diceSkinItems === 'function' ? this.diceSkinItems() : null;

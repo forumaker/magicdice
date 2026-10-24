@@ -4,10 +4,7 @@ import ExtensionPage from 'flarum/admin/components/ExtensionPage';
 function Section(iconClass: string, titleKey: string, ...children: any[]) {
   return m(
     'section.MagicDice-SettingsSection',
-    m('h3', [
-      m('i', { className: iconClass, 'aria-hidden': 'true' }),
-      m('span', ' ' + app.translator.trans(titleKey)),
-    ]),
+    m('h3', [m('i', { className: iconClass, 'aria-hidden': 'true' }), m('span', ' ' + app.translator.trans(titleKey))]),
     m('div.MagicDice-SettingsSection-content', children)
   );
 }
@@ -76,9 +73,7 @@ export default class MagicDicePage extends ExtensionPage {
             this.buildSettingComponent({
               type: 'boolean',
               setting: 'magic-dice.clearOnEdit',
-              label: app.translator.trans(
-                'forumaker-magic-dice.admin.settings.clearOnEdit'
-              ),
+              label: app.translator.trans('forumaker-magic-dice.admin.settings.clearOnEdit'),
             })
           ),
           m('div.Form-group', this.iconSettingsGrid())
